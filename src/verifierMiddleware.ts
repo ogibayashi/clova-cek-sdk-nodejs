@@ -21,6 +21,10 @@ export default function verifierMiddleware(
       }
     };
 
+    if (typeof req.rawBody === 'string' || Buffer.isBuffer(req.rawBody)) {
+      return process(req.rawBody);
+    }
+
     if (typeof req.body === 'string' || Buffer.isBuffer(req.body)) {
       return process(req.body);
     }
